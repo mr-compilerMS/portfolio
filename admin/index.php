@@ -43,7 +43,7 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
     <link href="<?= $base_url ?>assets/css/style.css" rel="stylesheet" />
     <link href="<?= $base_url ?>assets/css/admin-style.css" rel="stylesheet" />
     <link href="<?= $base_url ?>assets/css/owl-carousel.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="<?= $base_url ?>assets/vendor/jquery/jquery.min.js"></script>
 </head>
 
 <body>
@@ -78,7 +78,7 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
     <!-- End Header -->
     <div style="position: relative;">
         <?php include('../components/carousel.php') ?>
-        <a name="editCarousel" id="editCarousel" class="btn btn-edit btn-primary" href="admin/editCarousel.php" role="button"><i class="bi bi-pencil"></i> </a>
+        <a name="editCarousel" id="editCarousel" class="btn btn-edit btn-primary" href="<?= $base_url ?>admin/edit_carousel.php" role="button"><i class="bi bi-pencil"></i> </a>
     </div>
     <main id="main">
         <!-- ======= About Us Section ======= -->

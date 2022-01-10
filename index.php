@@ -4,6 +4,8 @@
 include './config/database.php';
 include('./config/fieldvalues.php');
 $base_url = url();
+echo "<script>var base_url = '$base_url';</script>";
+
 ?>
 
 <head>
@@ -35,7 +37,8 @@ $base_url = url();
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet" />
     <link href="assets/css/owl-carousel.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="<?= $base_url ?>assets/vendor/jquery/jquery.min.js"></script>
+
 </head>
 
 <body>
