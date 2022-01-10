@@ -53,9 +53,8 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
         });
         $(function() {
             $('#myList').sortable();
-        }); <
-        /scrip> < /
-        body >
+        });
+    </script>
+</body>
 
-            <
-            /html>
+</html>
