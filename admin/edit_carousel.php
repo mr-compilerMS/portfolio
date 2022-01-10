@@ -25,13 +25,14 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
 </head>
 
 <body>
+    <?php
     // TODO : Display the carousel images in the admin page
     // TODO : Add the ability to delete images from the carousel
     // TODO : Add the ability to add images to the carousel
     // TODO : Add the ability to edit the carousel images
     // TODO : Add the ability to change the title and description of the carousel
     // TODO : Add the ability to change the order of the carousel images
-
+    ?>
 
     <ul id="myList">
         <li id='a1'>Item 1</li>
@@ -52,8 +53,9 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
         });
         $(function() {
             $('#myList').sortable();
-        });
-    </script>
-</body>
+        }); <
+        /scrip> < /
+        body >
 
-</html>
+            <
+            /html>
