@@ -38,12 +38,15 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
     <link href="<?= $base_url ?>assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
     <link href="<?= $base_url ?>assets/vendor/owl-carousel/owl.carousel.min.css" rel="stylesheet" />
     <link href="<?= $base_url ?>assets/vendor/owl-carousel/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="<?= $base_url ?>assets\vendor\image-crop\pixelarity.css" rel="stylesheet" />
 
     <!-- Template Main CSS File -->
     <link href="<?= $base_url ?>assets/css/style.css" rel="stylesheet" />
     <link href="<?= $base_url ?>assets/css/admin-style.css" rel="stylesheet" />
     <link href="<?= $base_url ?>assets/css/owl-carousel.css" rel="stylesheet" />
     <script src="<?= $base_url ?>assets/vendor/jquery/jquery.min.js"></script>
+    <script src="<?= $base_url ?>assets/vendor/bootstable/bootstable.js"></script>
+    <script src="<?= $base_url ?>assets\vendor\image-crop\pixelarity-faceless.js"></script>
 </head>
 
 <body>
@@ -148,126 +151,14 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
         </section>
         <!-- End Counts Section -->
 
-        <!-- ======= Opinions Section ======= -->
-        <section class="section-bg">
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
-                <div class="section-title">
-                    <h2>Opinions</h2>
-                </div>
-
-                <div class="owl-carousel owl-theme mt-1">
-                    <div class="owl-item">
-                        <div class="card border border-primary shadow">
-                            <div class="row">
-                                <div class="col-12 col-sm-3 d-flex justify-content-center">
-                                    <img class="rounded-circle opinion-client" src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" />
-                                </div>
-                                <div class="col-12 col-sm-9 mt-4 mt-sm-1">
-                                    <div class="name col-12 text-center text-sm-start h6 fw-bold">
-                                        Vaibhav
-                                    </div>
-
-                                    <div class="testimonial fw-light">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item">
-                        <div class="card border border-primary shadow">
-                            <div class="row">
-                                <div class="col-12 col-sm-3 d-flex justify-content-center">
-                                    <img class="rounded-circle opinion-client" src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" />
-                                </div>
-                                <div class="col-12 col-sm-9 mt-4 mt-sm-1">
-                                    <div class="name col-12 text-center text-sm-start h6 fw-bold">
-                                        Vaibhav
-                                    </div>
-
-                                    <div class="testimonial fw-light">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item">
-                        <div class="card border border-primary shadow">
-                            <div class="row">
-                                <div class="col-12 col-sm-3 d-flex justify-content-center">
-                                    <img class="rounded-circle opinion-client" src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" />
-                                </div>
-                                <div class="col-12 col-sm-9 mt-4 mt-sm-1">
-                                    <div class="name col-12 text-center text-sm-start h6 fw-bold">
-                                        Vaibhav
-                                    </div>
-
-                                    <div class="testimonial fw-light">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item">
-                        <div class="card border border-primary shadow">
-                            <div class="row">
-                                <div class="col-12 col-sm-3 d-flex justify-content-center">
-                                    <img class="rounded-circle opinion-client" src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" />
-                                </div>
-                                <div class="col-12 col-sm-9 mt-4 mt-sm-1">
-                                    <div class="name col-12 text-center text-sm-start h6 fw-bold">
-                                        Vaibhav
-                                    </div>
-
-                                    <div class="testimonial fw-light">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item">
-                        <div class="card border border-primary shadow">
-                            <div class="row">
-                                <div class="col-12 col-sm-3 d-flex justify-content-center">
-                                    <img class="rounded-circle opinion-client" src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" />
-                                </div>
-                                <div class="col-12 col-sm-9 mt-4 mt-sm-1">
-                                    <div class="name col-12 text-center text-sm-start h6 fw-bold">
-                                        Vaibhav
-                                    </div>
-
-                                    <div class="testimonial fw-light">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-item">
-                        <div class="card border border-primary shadow">
-                            <div class="row">
-                                <div class="col-12 col-sm-3 d-flex justify-content-center">
-                                    <img class="rounded-circle opinion-client" src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" />
-                                </div>
-                                <div class="col-12 col-sm-9 mt-4 mt-sm-1">
-                                    <div class="name col-12 text-center text-sm-start h6 fw-bold">
-                                        Vaibhav
-                                    </div>
-
-                                    <div class="testimonial fw-light">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div style="position: relative;">
+            <div id="opinions-view">
+                <?php include('../components/opinions.php') ?>
             </div>
-        </section>
-        <!-- ======= Opinions Section ======= -->
+
+            <?php include('edit_opinions.php') ?>
+            <button data-bs-toggle="modal" data-bs-target="#editOpinionsDialog" name="editOpinions" id="editOpinions" class="btn btn-edit btn-primary" style="top:130px" role="button"><i class="bi bi-pencil"></i> </button>
+        </div>
 
         <!-- ======= Recent Activities Section ======= -->
         <section id="portfolio" class="portfolio section-bg">

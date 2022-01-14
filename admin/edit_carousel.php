@@ -43,14 +43,6 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
         <li id='a6'>Item 6</li>
     </ul>
     <script>
-        $(window).scroll(function() {
-            if ($(document).scrollTop() > 50) {
-                $('.main-nav').addClass('affix');
-                console.log("OK");
-            } else {
-                $('.main-nav').removeClass('affix');
-            }
-        });
         $(function() {
             $('#myList').sortable();
         });
