@@ -54,16 +54,16 @@ echo "<script>var base_url = '$base_url';</script>";
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                    <li><a class="nav-link scrollto" href="#about">About Me</a></li>
+                    <li><a class="nav-link active" href="#hero">Home</a></li>
+                    <li><a class="nav-link" href="<?= $base_url ?>about.php">About Me</a></li>
                     <li>
-                        <a class="nav-link scrollto" href="#services">Achievements</a>
+                        <a class="nav-link" href="<?= $base_url ?>achievements.php">Achievements</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" href="#portfolio">News</a>
+                        <a class="nav-link" href="<?= $base_url ?>news.php">News</a>
                     </li>
-                    <li><a class="nav-link scrollto" href="#team">Gallery</a></li>
-                    <li><a class="nav-link scrollto" href="#contact">Contact Me</a></li>
+                    <li><a class="nav-link" href="<?= $base_url ?>gallery.php">Gallery</a></li>
+                    <li><a class="nav-link" href="<?= $base_url ?>contact.php">Contact Me</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
@@ -78,7 +78,7 @@ echo "<script>var base_url = '$base_url';</script>";
             <div class="container" data-aos="fade-up">
                 <div class="row no-gutters">
                     <div class="col-sm-3 d-flex flex-column justify-content-center">
-                        <img src="<?= $imgurls["aboutme"] ?>" class="img-fluid" alt="" />
+                        <img src="<?= $imgurls["aboutmeimg"] ?>" class="img-fluid" alt="" />
                     </div>
 
                     <div class="
@@ -90,9 +90,11 @@ echo "<script>var base_url = '$base_url';</script>";
               ">
                         <div class="section-title">
                             <h2>About Me</h2>
-                            <p>
-                                <?= $fieldvalues["aboutme"] ?>
-                            </p>
+                            <p id="aboutme"><?php if (isset($fieldvalues["aboutme"])) {
+                                                echo $fieldvalues["aboutme"];
+                                            } ?></p>
+
+                            <a href="about.php">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -101,7 +103,7 @@ echo "<script>var base_url = '$base_url';</script>";
         <!-- End About Us Section -->
 
         <!-- ======= Counts Section ======= -->
-        <section class="counts section-bg">
+        <!-- <section class="counts section-bg">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up">
@@ -137,159 +139,12 @@ echo "<script>var base_url = '$base_url';</script>";
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <!-- End Counts Section -->
 
         <?php include('./components/opinions.php') ?>
+        <?php include('./components/recent_activities.php') ?>
 
-        <!-- ======= Recent Activities Section ======= -->
-        <section id="portfolio" class="portfolio section-bg">
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
-                <div class="section-title">
-                    <h2>Recent Activities</h2>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <ul id="portfolio-flters">
-                            <li data-filter="*" class="filter-active">All</li>
-                            <li data-filter=".filter-app">App</li>
-                            <li data-filter=".filter-card">Card</li>
-                            <li data-filter=".filter-web3">Web3</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="row portfolio-container">
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="" />
-                            <div class="portfolio-info">
-                                <h4>App 1</h4>
-                                <p>App</p>
-                                <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bi bi-plus"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web3">
-                        <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="" />
-                            <div class="portfolio-info">
-                                <h4>Web 3</h4>
-                                <p>Web</p>
-                                <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bi bi-plus"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="" />
-                            <div class="portfolio-info">
-                                <h4>App 2</h4>
-                                <p>App</p>
-                                <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bi bi-plus"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="" />
-                            <div class="portfolio-info">
-                                <h4>Card 2</h4>
-                                <p>Card</p>
-                                <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bi bi-plus"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web3">
-                        <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="" />
-                            <div class="portfolio-info">
-                                <h4>Web 2</h4>
-                                <p>Web</p>
-                                <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bi bi-plus"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="" />
-                            <div class="portfolio-info">
-                                <h4>App 3</h4>
-                                <p>App</p>
-                                <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bi bi-plus"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="" />
-                            <div class="portfolio-info">
-                                <h4>Card 1</h4>
-                                <p>Card</p>
-                                <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bi bi-plus"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="" />
-                            <div class="portfolio-info">
-                                <h4>Card 3</h4>
-                                <p>Card</p>
-                                <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bi bi-plus"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web3">
-                        <div class="portfolio-wrap">
-                            <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="" />
-                            <div class="portfolio-info">
-                                <h4>Web 3</h4>
-                                <p>Web</p>
-                                <div class="portfolio-links">
-                                    <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bi bi-plus"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Recent Activities Section -->
 
         <!-- ======= Contact Us Section ======= -->
         <section id="contact" class="contact">
@@ -301,9 +156,14 @@ echo "<script>var base_url = '$base_url';</script>";
                 <div class="row">
                     <div class="col-lg-6 d-flex" data-aos="fade-up">
                         <div class="info-box">
-                            <i class="bx bx-map"></i>
-                            <h3>Our Address</h3>
-                            <p>A108 Adam Street, New York, NY 535022</p>
+                            <?php
+                            if (isset($fieldvalues["address"])) {
+                                echo "<i class='bx bx-map'></i>";
+                                echo "<h3>Address</h3>";
+                                echo "<address>" . $fieldvalues["address"] . "</address>";
+                            }
+                            ?>
+
                         </div>
                     </div>
 
@@ -311,7 +171,12 @@ echo "<script>var base_url = '$base_url';</script>";
                         <div class="info-box">
                             <i class="bx bx-envelope"></i>
                             <h3>Email Us</h3>
-                            <p>info@example.com<br />contact@example.com</p>
+                            <?php
+                            if (isset($fieldvalues["email1"]))
+                                echo "<a id='email1' href='mailto:" . $fieldvalues["email1"] . "'>" . $fieldvalues["email1"] . "</a>";
+                            if (isset($fieldvalues["email2"]))
+                                echo "<a id='email2' href='mailto:" . $fieldvalues["email2"] . "'>" . $fieldvalues["email2"] . "</a>";
+                            ?>
                         </div>
                     </div>
 
@@ -319,7 +184,12 @@ echo "<script>var base_url = '$base_url';</script>";
                         <div class="info-box">
                             <i class="bx bx-phone-call"></i>
                             <h3>Call Us</h3>
-                            <p>+1 5589 55488 55<br />+1 6678 254445 41</p>
+                            <?php
+                            if (isset($fieldvalues["phone1"]))
+                                echo "<a id='phone1' href='mailto:" . $fieldvalues["phone1"] . "'>" . $fieldvalues["phone1"] . "</a>";
+                            if (isset($fieldvalues["phone2"]))
+                                echo "<a id='phone2' href='mailto:" . $fieldvalues["phone2"] . "'>" . $fieldvalues["phone2"] . "</a>";
+                            ?>
                         </div>
                     </div>
 
@@ -363,93 +233,77 @@ echo "<script>var base_url = '$base_url';</script>";
         <div class="footer-top">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 footer-info">
-                        <h3>Mamba</h3>
+                    <div class="col-lg-10 col-md-6 footer-info">
+                        <h3>
+                            <?php
+                            if (isset($fieldvalues["title"])) {
+                                echo $fieldvalues["title"];
+                            }
+                            ?>
+                        </h3>
                         <p>
-                            A108 Adam Street <br />
-                            NY 535022, USA<br /><br />
-                            <strong>Phone:</strong> +1 5589 55488 55<br />
-                            <strong>Email:</strong> info@example.com<br />
+                            <?php
+                            if (isset($fieldvalues["address"])) {
+                                echo "<address id='address'>" . $fieldvalues["address"] . "</address>";
+                            }
+                            if (isset($fieldvalues["phone1"]))
+                                echo "<strong>Phone:</strong> <a id='phone1' class='text-white' href='mailto:" . $fieldvalues["phone1"] . "'>" . $fieldvalues["phone1"] . "</a>";
+                            if (isset($fieldvalues["phone2"]))
+                                echo " / <a id='phone2' href='mailto:" . $fieldvalues["phone2"] . "'>" . $fieldvalues["phone2"] . "</a>";
+
+                            if (isset($fieldvalues["email1"]))
+                                echo "<br/> <strong>Email:</strong> <a id='email1' class='text-white' href='mailto:" . $fieldvalues["email1"] . "'>" . $fieldvalues["email1"] . "</a>";
+                            if (isset($fieldvalues["email2"]))
+                                echo " / <a id='email2' href='mailto:" . $fieldvalues["email2"] . "'>" . $fieldvalues["email2"] . "</a>";
+                            ?>
+                            <br>
+                            <!-- <strong>Phone:</strong> +1 5589 55488 55<br /> -->
+                            <!-- <strong>Email:</strong> info@example.com<br /> -->
                         </p>
                         <div class="social-links mt-3">
-                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                            <?php
+                            if (isset($fieldvalues["facebook"]) && $fieldvalues["facebook"] != "")
+                                echo "<a href='" . $fieldvalues["facebook"] . "' id='facebook'  target='__blank'><i class='bx bxl-facebook'></i></a>";
+                            if (isset($fieldvalues["twitter"]) && $fieldvalues["twitter"] != "")
+                                echo "<a href='" . $fieldvalues["twitter"] . "' id='twitter'  target='__blank'><i class='bx bxl-twitter'></i></a>";
+                            if (isset($fieldvalues["instagram"]) && $fieldvalues["instagram"] != "")
+                                echo "<a href='" . $fieldvalues["instagram"] . "' id='instagram'  target='__blank'><i class='bx bxl-instagram'></i></a>";
+                            if (isset($fieldvalues["linkedin"]) && $fieldvalues["linkedin"] != "")
+                                echo "<a href='" . $fieldvalues["linkedin"] . "' id='linkedin'  target='__blank'><i class='bx bxl-linkedin'></i></a>";
+                            if (isset($fieldvalues["youtube"]) && $fieldvalues["youtube"] != "")
+                                echo "<a href='" . $fieldvalues["youtube"] . "' id='youtube'  target='__blank'><i class='bx bxl-youtube'></i></a>";
+                            ?>
                         </div>
                     </div>
-
                     <div class="col-lg-2 col-md-6 footer-links">
                         <h4>Useful Links</h4>
                         <ul>
                             <li>
-                                <i class="bx bx-chevron-right"></i> <a href="#">Home</a>
+                                <i class="bx bx-chevron-right"></i> <a href="#hero">Home</a>
                             </li>
                             <li>
-                                <i class="bx bx-chevron-right"></i> <a href="#">About us</a>
+                                <i class="bx bx-chevron-right"></i> <a href="<?= $base_url ?>about.php">About us</a>
                             </li>
                             <li>
-                                <i class="bx bx-chevron-right"></i> <a href="#">Services</a>
+                                <i class="bx bx-chevron-right"></i> <a href="<?= $base_url ?>achievements.php">Achievements</a>
                             </li>
                             <li>
-                                <i class="bx bx-chevron-right"></i>
-                                <a href="#">Terms of service</a>
+                                <i class="bx bx-chevron-right"></i> <a href="<?= $base_url ?>news.php">News</a>
                             </li>
-                            <li>
-                                <i class="bx bx-chevron-right"></i>
-                                <a href="#">Privacy policy</a>
-                            </li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="<?= $base_url ?>gallery.php">Gallery</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="<?= $base_url ?>contact.php">Contact Me</a></li>
                         </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Our Services</h4>
-                        <ul>
-                            <li>
-                                <i class="bx bx-chevron-right"></i> <a href="#">Web Design</a>
-                            </li>
-                            <li>
-                                <i class="bx bx-chevron-right"></i>
-                                <a href="#">Web Development</a>
-                            </li>
-                            <li>
-                                <i class="bx bx-chevron-right"></i>
-                                <a href="#">Product Management</a>
-                            </li>
-                            <li>
-                                <i class="bx bx-chevron-right"></i> <a href="#">Marketing</a>
-                            </li>
-                            <li>
-                                <i class="bx bx-chevron-right"></i>
-                                <a href="#">Graphic Design</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 footer-newsletter">
-                        <h4>Our Newsletter</h4>
-                        <p>
-                            Tamen quem nulla quae legam multos aute sint culpa legam noster
-                            magna
-                        </p>
-                        <form action="" method="post">
-                            <input type="email" name="email" /><input type="submit" value="Subscribe" />
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
 
+
         <div class="container">
             <div class="copyright">
-                &copy; Copyright <strong><span>Mamba</span></strong>. All Rights Reserved
+                &copy; Copyright <strong><span><?= $fieldvalues['title'] ?></span></strong>. All Rights Reserved
             </div>
             <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/mamba-one-page-bootstrap-template-free/ -->
                 Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
             </div>
         </div>
@@ -466,47 +320,10 @@ echo "<script>var base_url = '$base_url';</script>";
     <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="assets/vendor/php-email-form/validate.js"></script>
-    <script src="assets/vendor/owl-carousel/owl.carousel.min.js"></script>
+
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            var silder = $(".owl-carousel");
-            silder.owlCarousel({
-                autoplay: true,
-                autoplayTimeout: 2000,
-                autoplayHoverPause: true,
-                items: 2,
-                stagePadding: 20,
-                center: true,
-                nav: false,
-                margin: 0,
-                dots: false,
-                loop: true,
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    480: {
-                        items: 2
-                    },
-                    575: {
-                        items: 2
-                    },
-                    768: {
-                        items: 2
-                    },
-                    991: {
-                        items: 2
-                    },
-                    1200: {
-                        items: 3
-                    },
-                },
-            });
-        });
-    </script>
 </body>
 
 </html>

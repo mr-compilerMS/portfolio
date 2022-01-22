@@ -23,13 +23,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "SELECT username FROM users WHERE username = '" . $username . "' AND password = '" . $password . "'";
 
         $result = $conn->query($sql);
-        if (!isset($result) || !isset($result->num_rows)) {
-            header("location: login.php?error=1");
-        } else if ($result->num_rows > 0) {
+        if ($result->num_rows > 0) {
             session_start();
             $_SESSION["loggedin"] = true;
             $_SESSION["username"] = $username;
             header("location: index.php");
+            exit;
         }
     }
+    header("location: login.php?error=1");
 }

@@ -45,8 +45,10 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
     <link href="<?= $base_url ?>assets/css/admin-style.css" rel="stylesheet" />
     <link href="<?= $base_url ?>assets/css/owl-carousel.css" rel="stylesheet" />
     <script src="<?= $base_url ?>assets/vendor/jquery/jquery.min.js"></script>
-    <script src="<?= $base_url ?>assets/vendor/bootstable/bootstable.js"></script>
     <script src="<?= $base_url ?>assets\vendor\image-crop\pixelarity-faceless.js"></script>
+
+    <script src="<?= $base_url ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 </head>
 
 <body>
@@ -54,8 +56,10 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
     <!-- ======= Header ======= -->
     <header id="header" class="d-flex align-items-center">
         <div class="container d-flex align-items-center">
-            <div class="logo me-auto">
-                <h1><a href="index.php"><?= $fieldvalues["title"] ?></a></h1>
+            <div class="logo me-auto" style="position: relative;">
+                <h1><a href="index.php" id="title"><?= $fieldvalues["title"] ?></a></h1>
+                <button onclick="editField('title', 'text','')" class="btn btn-edit-sm btn-primary" role="button" style="top: 10px;right:-40px;"><i class="bi bi-pencil"></i> </button>
+
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <a href="index.php"><img src="<?= $base_url ?>assets/img/logo.png" alt="" class="img-fluid"></a>-->
             </div>
@@ -88,22 +92,19 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
         <section id="about" class="about">
             <div class="container" data-aos="fade-up">
                 <div class="row no-gutters">
-                    <div class="col-sm-3 d-flex flex-column justify-content-center">
-                        <img src="<?= $base_url ?><?= $imgurls["aboutme"] ?>" class="img-fluid" alt="" />
-                    </div>
+                    <div class="col-sm-3 d-flex flex-column justify-content-center" style="position: relative;">
+                        <img id="aboutmeimg" src="<?= $base_url ?><?= $imgurls["aboutmeimg"] ?>" class="img-fluid" alt="" />
+                        <button onclick="editImage('aboutmeimg',400,400)" class="btn btn-edit-sm btn-primary" role="button"><i class="bi bi-pencil"></i> </button>
 
-                    <div class="
-                col-sm-9
-                d-flex
-                flex-column
-                justify-content-center
-                about-content
-              ">
+                    </div>
+                    <div class="col-sm-9 d-flex flex-column justify-content-center about-content">
                         <div class="section-title">
                             <h2>About Me</h2>
-                            <p>
-                                <?= $fieldvalues["aboutme"] ?>
-                            </p>
+                            <p id="aboutme"><?php if (isset($fieldvalues["aboutme"])) {
+                                                echo $fieldvalues["aboutme"];
+                                            } ?></p>
+                            <button onclick="editField('aboutme', 'textarea','')" class="btn btn-edit-sm btn-primary" role="button"><i class="bi bi-pencil"></i> </button>
+                            <a href="about.php">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -112,12 +113,11 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
         <!-- End About Us Section -->
 
         <!-- ======= Counts Section ======= -->
-        <section class="counts section-bg">
+        <!-- <section class="counts section-bg">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up">
                         <div class="count-box">
-                            <i class="bi bi-simple-smile" style="color: #20b38e"></i>
                             <span data-purecounter-start="0" data-purecounter-end="57" data-purecounter-duration="1" class="purecounter"></span>
                             <p>Articles Wrote</p>
                         </div>
@@ -125,7 +125,6 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
 
                     <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up" data-aos-delay="200">
                         <div class="count-box">
-                            <i class="bi bi-document-folder" style="color: #c042ff"></i>
                             <span data-purecounter-start="0" data-purecounter-end="12" data-purecounter-duration="1" class="purecounter"></span>
                             <p>Years Experience</p>
                         </div>
@@ -133,7 +132,6 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
 
                     <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up" data-aos-delay="400">
                         <div class="count-box">
-                            <i class="bi bi-live-support" style="color: #46d1ff"></i>
                             <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
                             <p>Awards received</p>
                         </div>
@@ -141,14 +139,13 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
 
                     <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up" data-aos-delay="600">
                         <div class="count-box">
-                            <i class="bi bi-users-alt-5" style="color: #ffb459"></i>
                             <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
                             <p>Hard Workers</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <!-- End Counts Section -->
 
         <div style="position: relative;">
@@ -159,156 +156,15 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
             <?php include('edit_opinions.php') ?>
             <button data-bs-toggle="modal" data-bs-target="#editOpinionsDialog" name="editOpinions" id="editOpinions" class="btn btn-edit btn-primary" style="top:130px" role="button"><i class="bi bi-pencil"></i> </button>
         </div>
-
-        <!-- ======= Recent Activities Section ======= -->
-        <section id="portfolio" class="portfolio section-bg">
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
-                <div class="section-title">
-                    <h2>Recent Activities</h2>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <ul id="portfolio-flters">
-                            <li data-filter="*" class="filter-active">All</li>
-                            <li data-filter=".filter-app">App</li>
-                            <li data-filter=".filter-card">Card</li>
-                            <li data-filter=".filter-web3">Web3</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="row portfolio-container">
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <div class="portfolio-wrap">
-                            <img src="<?= $base_url ?>assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="" />
-                            <div class="portfolio-info">
-                                <h4>App 1</h4>
-                                <p>App</p>
-                                <div class="portfolio-links">
-                                    <a href="<?= $base_url ?>assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bi bi-plus"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web3">
-                        <div class="portfolio-wrap">
-                            <img src="<?= $base_url ?>assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="" />
-                            <div class="portfolio-info">
-                                <h4>Web 3</h4>
-                                <p>Web</p>
-                                <div class="portfolio-links">
-                                    <a href="<?= $base_url ?>assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bi bi-plus"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <div class="portfolio-wrap">
-                            <img src="<?= $base_url ?>assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="" />
-                            <div class="portfolio-info">
-                                <h4>App 2</h4>
-                                <p>App</p>
-                                <div class="portfolio-links">
-                                    <a href="<?= $base_url ?>assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bi bi-plus"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <div class="portfolio-wrap">
-                            <img src="<?= $base_url ?>assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="" />
-                            <div class="portfolio-info">
-                                <h4>Card 2</h4>
-                                <p>Card</p>
-                                <div class="portfolio-links">
-                                    <a href="<?= $base_url ?>assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bi bi-plus"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web3">
-                        <div class="portfolio-wrap">
-                            <img src="<?= $base_url ?>assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="" />
-                            <div class="portfolio-info">
-                                <h4>Web 2</h4>
-                                <p>Web</p>
-                                <div class="portfolio-links">
-                                    <a href="<?= $base_url ?>assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bi bi-plus"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                        <div class="portfolio-wrap">
-                            <img src="<?= $base_url ?>assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="" />
-                            <div class="portfolio-info">
-                                <h4>App 3</h4>
-                                <p>App</p>
-                                <div class="portfolio-links">
-                                    <a href="<?= $base_url ?>assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bi bi-plus"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <div class="portfolio-wrap">
-                            <img src="<?= $base_url ?>assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="" />
-                            <div class="portfolio-info">
-                                <h4>Card 1</h4>
-                                <p>Card</p>
-                                <div class="portfolio-links">
-                                    <a href="<?= $base_url ?>assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bi bi-plus"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <div class="portfolio-wrap">
-                            <img src="<?= $base_url ?>assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="" />
-                            <div class="portfolio-info">
-                                <h4>Card 3</h4>
-                                <p>Card</p>
-                                <div class="portfolio-links">
-                                    <a href="<?= $base_url ?>assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bi bi-plus"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-web3">
-                        <div class="portfolio-wrap">
-                            <img src="<?= $base_url ?>assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="" />
-                            <div class="portfolio-info">
-                                <h4>Web 3</h4>
-                                <p>Web</p>
-                                <div class="portfolio-links">
-                                    <a href="<?= $base_url ?>assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bi bi-plus"></i></a>
-                                    <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div style="position: relative;">
+            <div id="activities-view">
+                <?php include('../components/recent_activities.php') ?>
             </div>
-        </section>
-        <!-- End Recent Activities Section -->
-
+            <div id="editActivityContainer">
+                <?php include('edit_activities.php') ?>
+            </div>
+            <button data-bs-toggle="modal" data-bs-target="#editActivitiesDialog" name="editActivities" id="editActivities" class="btn btn-edit btn-primary" style="top:130px" role="button"><i class="bi bi-pencil"></i> </button>
+        </div>
         <!-- ======= Contact Us Section ======= -->
         <section id="contact" class="contact">
             <div class="container" data-aos="fade-up">
@@ -319,9 +175,18 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
                 <div class="row">
                     <div class="col-lg-6 d-flex" data-aos="fade-up">
                         <div class="info-box">
-                            <i class="bx bx-map"></i>
-                            <h3>Our Address</h3>
-                            <p>A108 Adam Street, New York, NY 535022</p>
+                            <i class='bx bx-map'></i>
+                            <h3>Address</h3>
+                            <?php
+                            if (isset($fieldvalues["address"])) {
+
+                                echo "<address id='address'>" . $fieldvalues["address"] . "</address>";
+                            } else {
+                                echo "<address id='address'></address>";
+                            }
+                            ?>
+                            <button onclick="editField('address', 'textarea','Append <br> for next line.')" class="btn btn-edit-sm btn-primary" role="button"><i class="bi bi-pencil"></i> </button>
+
                         </div>
                     </div>
 
@@ -329,7 +194,18 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
                         <div class="info-box">
                             <i class="bx bx-envelope"></i>
                             <h3>Email Us</h3>
-                            <p>info@example.com<br />contact@example.com</p>
+                            <?php
+                            if (isset($fieldvalues["email1"]))
+                                echo "<a id='email1' href='mailto:" . $fieldvalues["email1"] . "'>" . $fieldvalues["email1"] . "</a>";
+                            else
+                                echo "<a id='email1' href='mailto:'>sample@sample.com</a>";
+                            echo "<button onclick='editField(`email1`, `email`,`Enter email 1.`)' class='btn ' role='button'><i class='bi bi-pencil'></i> </button><br>";
+                            if (isset($fieldvalues["email2"]))
+                                echo "<a id='email2' href='mailto:" . $fieldvalues["email2"] . "'>" . $fieldvalues["email2"] . "</a>";
+                            else
+                                echo "<a id='email2' href='mailto:'>sample@sample.com</a>";
+                            echo "<button onclick='editField(`email2`, `email`,`Enter email 2.`)' class='btn ' role='button'><i class='bi bi-pencil'></i> </button><br>";
+                            ?>
                         </div>
                     </div>
 
@@ -337,7 +213,18 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
                         <div class="info-box">
                             <i class="bx bx-phone-call"></i>
                             <h3>Call Us</h3>
-                            <p>+1 5589 55488 55<br />+1 6678 254445 41</p>
+                            <?php
+                            if (isset($fieldvalues["phone1"]))
+                                echo "<a id='phone1' href='tel:" . $fieldvalues["phone1"] . "'>" . $fieldvalues["phone1"] . "</a>";
+                            else
+                                echo "<a id='phone1' href='tel:'>+91</a>";
+                            echo "<button onclick='editField(`phone1`, `tel`,`Enter Phone 1.`)' class='btn ' role='button'><i class='bi bi-pencil'></i> </button><br>";
+                            if (isset($fieldvalues["email2"]))
+                                echo "<a id='email2' href='tel:" . $fieldvalues["email2"] . "'>" . $fieldvalues["email2"] . "</a>";
+                            else
+                                echo "<a id='email2' href='tel:'>+91</a>";
+                            echo "<button onclick='editField(`email2`, `tel`,`Enter phone 2.`)' class='btn ' role='button'><i class='bi bi-pencil'></i> </button><br>";
+                            ?>
                         </div>
                     </div>
 
@@ -381,21 +268,51 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
         <div class="footer-top">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 footer-info">
-                        <h3>Mamba</h3>
+                    <div class="col-lg-10 col-md-6 footer-info">
+                        <h3>
+                            <?php
+                            if (isset($fieldvalues["title"])) {
+                                echo $fieldvalues["title"];
+                            }
+                            ?>
+                        </h3>
                         <p>
-                            A108 Adam Street <br />
-                            NY 535022, USA<br /><br />
-                            <strong>Phone:</strong> +1 5589 55488 55<br />
-                            <strong>Email:</strong> info@example.com<br />
+                            <?php
+                            if (isset($fieldvalues["address"])) {
+                                echo "<address id='address'>" . $fieldvalues["address"] . "</address>";
+                            }
+                            if (isset($fieldvalues["phone1"]))
+                                echo "<strong>Phone:</strong> <a id='phone1' class='text-white' href='mailto:" . $fieldvalues["phone1"] . "'>" . $fieldvalues["phone1"] . "</a>";
+                            if (isset($fieldvalues["phone2"]))
+                                echo " / <a id='phone2' href='mailto:" . $fieldvalues["phone2"] . "'>" . $fieldvalues["phone2"] . "</a>";
+
+                            if (isset($fieldvalues["email1"]))
+                                echo "<br/> <strong>Email:</strong> <a id='email1' class='text-white' href='mailto:" . $fieldvalues["email1"] . "'>" . $fieldvalues["email1"] . "</a>";
+                            if (isset($fieldvalues["email2"]))
+                                echo " / <a id='email2' href='mailto:" . $fieldvalues["email2"] . "'>" . $fieldvalues["email2"] . "</a>";
+                            ?>
+                            <br>
+                            <!-- <strong>Phone:</strong> +1 5589 55488 55<br /> -->
+                            <!-- <strong>Email:</strong> info@example.com<br /> -->
                         </p>
-                        <div class="social-links mt-3">
-                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        <div class="row">
+                            <div class="social-links mt-3 col-7">
+                                <?php
+                                if (isset($fieldvalues["facebook"]) && $fieldvalues["facebook"] != "")
+                                    echo "<a href='" . $fieldvalues["facebook"] . "' id='facebook'  target='__blank'><i class='bx bxl-facebook'></i></a>";
+                                if (isset($fieldvalues["twitter"]) && $fieldvalues["twitter"] != "")
+                                    echo "<a href='" . $fieldvalues["twitter"] . "' id='twitter'  target='__blank'><i class='bx bxl-twitter'></i></a>";
+                                if (isset($fieldvalues["instagram"]) && $fieldvalues["instagram"] != "")
+                                    echo "<a href='" . $fieldvalues["instagram"] . "' id='instagram'  target='__blank'><i class='bx bxl-instagram'></i></a>";
+                                if (isset($fieldvalues["linkedin"]) && $fieldvalues["linkedin"] != "")
+                                    echo "<a href='" . $fieldvalues["linkedin"] . "' id='linkedin'  target='__blank'><i class='bx bxl-linkedin'></i></a>";
+                                if (isset($fieldvalues["youtube"]) && $fieldvalues["youtube"] != "")
+                                    echo "<a href='" . $fieldvalues["youtube"] . "' id='youtube'  target='__blank'><i class='bx bxl-youtube'></i></a>";
+                                ?>
+                            </div>
+                            <button data-bs-toggle="modal" data-bs-target="#editSocialValues" onclick="editSocialValues(event)" name="editSocialValuesBtn" id="editSocialValuesBtn" class="btn btn-edit-sm btn-primary col-1" style="position: relative; top:0;margin-left:20px;" role="button"><i class="bi bi-pencil"></i> </button>
                         </div>
+
                     </div>
 
                     <div class="col-lg-2 col-md-6 footer-links">
@@ -420,54 +337,15 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
                             </li>
                         </ul>
                     </div>
-
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Our Services</h4>
-                        <ul>
-                            <li>
-                                <i class="bx bx-chevron-right"></i> <a href="#">Web Design</a>
-                            </li>
-                            <li>
-                                <i class="bx bx-chevron-right"></i>
-                                <a href="#">Web Development</a>
-                            </li>
-                            <li>
-                                <i class="bx bx-chevron-right"></i>
-                                <a href="#">Product Management</a>
-                            </li>
-                            <li>
-                                <i class="bx bx-chevron-right"></i> <a href="#">Marketing</a>
-                            </li>
-                            <li>
-                                <i class="bx bx-chevron-right"></i>
-                                <a href="#">Graphic Design</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 footer-newsletter">
-                        <h4>Our Newsletter</h4>
-                        <p>
-                            Tamen quem nulla quae legam multos aute sint culpa legam noster
-                            magna
-                        </p>
-                        <form action="" method="post">
-                            <input type="email" name="email" /><input type="submit" value="Subscribe" />
-                        </form>
-                    </div>
                 </div>
             </div>
         </div>
 
         <div class="container">
             <div class="copyright">
-                &copy; Copyright <strong><span>Mamba</span></strong>. All Rights Reserved
+                &copy; Copyright <strong><span><?= $fieldvalues['title'] ?></span></strong>. All Rights Reserved
             </div>
             <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/mamba-one-page-bootstrap-template-free/ -->
                 Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
             </div>
         </div>
@@ -476,55 +354,212 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+    <input type="file" accept="image/*" id="imageInput" style="display:none" />
+
+    <!-- Edit Field Values modal -->
+    <div class="modal fade" id="editFieldValues" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editFieldValuesLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form class="modal-content" onsubmit="handleFieldValueSubmit(event)">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editFieldValuesLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-1">
+                        <label for="fieldValue" class="form-label"></label>
+                        <input type="textarea" rows='3' class="form-control" id="fieldValue" placeholder="Title">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Social Accounts -->
+    <div class="modal fade" id="editSocialValues" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editFieldValuesLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form class="modal-content" onsubmit="handleSocialSubmit(event)">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editFieldValuesLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-1">
+                        <label for="facebook" class="form-label">facebook</label>
+                        <input type="url" rows='3' name="facebook" class="form-control" id="editfacebook" placeholder="facebook">
+                    </div>
+                    <div class="mb-1">
+                        <label for="twitter" class="form-label">twitter</label>
+                        <input type="url" rows='3' class="form-control" name="twitter" id="edittwitter" placeholder="twitter">
+                    </div>
+                    <div class="mb-1">
+                        <label for="instagram" class="form-label">instagram</label>
+                        <input type="url" rows='3' class="form-control" id="editinstagram" name="instagram" placeholder="instagram">
+                    </div>
+                    <div class="mb-1">
+                        <label for="linkedin" class="form-label">linkedin</label>
+                        <input type="url" rows='3' class="form-control" id="editlinkedin" name="linkedin" placeholder="linkedin">
+                    </div>
+                    <div class="mb-1">
+                        <label for="youtube" class="form-label">youtube</label>
+                        <input type="url" rows='3' class="form-control" id="edityoutube" name="youtube" placeholder="youtube">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Vendor JS Files -->
     <script src="<?= $base_url ?>assets/vendor/purecounter/purecounter.js"></script>
     <script src="<?= $base_url ?>assets/vendor/aos/aos.js"></script>
-    <script src="<?= $base_url ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="<?= $base_url ?>assets/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="<?= $base_url ?>assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="<?= $base_url ?>assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="<?= $base_url ?>assets/vendor/php-email-form/validate.js"></script>
     <script src="<?= $base_url ?>assets/vendor/owl-carousel/owl.carousel.min.js"></script>
     <!-- Template Main JS File -->
     <script src="<?= $base_url ?>assets/js/main.js"></script>
 
     <script>
-        $(document).ready(function() {
-            var silder = $(".owl-carousel");
-            silder.owlCarousel({
-                autoplay: true,
-                autoplayTimeout: 2000,
-                autoplayHoverPause: true,
-                items: 2,
-                stagePadding: 20,
-                center: true,
-                nav: false,
-                margin: 0,
-                dots: false,
-                loop: true,
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    480: {
-                        items: 2
-                    },
-                    575: {
-                        items: 2
-                    },
-                    768: {
-                        items: 2
-                    },
-                    991: {
-                        items: 2
-                    },
-                    1200: {
-                        items: 3
-                    },
-                },
+        var editFieldValues = new bootstrap.Modal(document.getElementById('editFieldValues'), {
+            keyboard: false
+        })
+
+        function editImage(id, width, height) {
+            $('#imageInput').click();
+            $('#imageInput').on('change', function(event) {
+                var img = event.target.files[0];
+                if (
+                    !pixelarity.open(
+                        img,
+                        true,
+                        function(image) {
+                            var data = {
+                                id: id,
+                                value: image
+                            }
+                            $.ajax({
+                                url: '<?= $base_url ?>admin/ajax/imgurls.php',
+                                type: 'POST',
+                                data: data,
+                                success: function(res) {
+                                    res = JSON.parse(res);
+                                    if (res.success === true) {
+                                        $('#' + id).attr('src', '<?= $base_url ?>' + res.url);
+                                    }
+                                }
+                            });
+                        },
+                        "jpg",
+                        0.8
+                    )
+                ) {
+                    alert("Whoops! That is not an image!");
+                }
             });
-        });
+        }
+
+        function editField(fieldId, type, helpText) {
+            $('#editFieldValuesLabel').html(fieldId);
+            let currentText = $('#' + fieldId).html();
+            let parent = $('#fieldValue').parent();
+            parent.find('label').text(helpText);
+            $('#fieldValue').remove();
+            let field = '';
+            switch (type) {
+                case 'text':
+                    field = '<input type="text" class="form-control" id="fieldValue" value="' + currentText + '">';
+                    break;
+                case 'textarea':
+                    field = '<textarea maxlength="500" class="form-control" id="fieldValue" rows="3" >' + currentText + '</textarea>';
+                    break;
+                default:
+                    field = '<input type="' + type + '" class="form-control" id="fieldValue" value="' + currentText + '">';
+            }
+            parent.append(field);
+            // $('#fieldValue').val(currentText);
+            $('#fieldValue').attr('name', fieldId);
+            editFieldValues.show();
+
+        }
+
+        function editSocialValues(e) {
+            let facebook = $('#facebook').attr('href');
+            let twitter = $('#twitter').attr('href');
+            let instagram = $('#instagram').attr('href');
+            let linkedin = $('#linkedin').attr('href');
+            let youtube = $('#youtube').attr('href');
+            $('#editfacebook').val(facebook);
+            $('#edittwitter').val(twitter);
+            $('#editinstagram').val(instagram);
+            $('#editlinkedin').val(linkedin);
+            $('#edityoutube').val(youtube);
+
+
+        }
+
+        async function handleSocialSubmit(e) {
+            e.preventDefault();
+            var data = objectifyForm($(e.target).serializeArray());
+            $('#cover-spin').show(0);
+            for (var key of Object.keys(data)) {
+                //console.log(key + " -> " + p[key])
+
+                let values = {
+                    id: key,
+                    value: data[key]
+                }
+                let response = await $.post('<?= $base_url ?>admin/ajax/fieldvalues.php', values);
+                response = JSON.parse(response);
+                if (response.success === true) {
+                    if ($('#' + key).length > 0) {
+                        $('#' + key).attr('href', data[key]);
+                    } else if (data[key] !== '') {
+                        $('.social-links').append(`<a href='${data[key]}' target='__blank' id='${key}'><i class='bx bxl-${key}'></i></a>`)
+                    } else if (data[key] === '') {
+                        $('#' + key).remove();
+                    }
+                } else {
+                    alert('Something went wrong');
+                }
+            }
+
+            $('#cover-spin').hide(0);
+            $('#editSocialValues').find('.btn-close').click();
+
+        }
+
+        function handleFieldValueSubmit(e) {
+            e.preventDefault();
+            let fieldId = $('#fieldValue').attr('name');
+            let fieldValue = $('#fieldValue').val();
+            $('#' + fieldId).html(fieldValue);
+            let data = {
+                id: fieldId,
+                value: fieldValue
+            }
+            $('#cover-spin').show(0);
+
+            $.post('<?= $base_url ?>admin/ajax/fieldvalues.php', data, function(response) {
+                response = JSON.parse(response);
+                if (response.success === true) {
+                    editFieldValues.hide();
+                } else {
+                    alert('Something went wrong');
+                }
+                $('#cover-spin').hide(0);
+
+            });
+
+        }
     </script>
+    <div id="cover-spin"></div>
 </body>
 
 </html>

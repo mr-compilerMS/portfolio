@@ -1,8 +1,9 @@
-<?php include '../config/database.php'; ?>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cropper/1.0.1/jquery-cropper.min.js" integrity="sha512-V8cSoC5qfk40d43a+VhrTEPf8G9dfWlEJgvLSiq2T2BmgGRmZzB8dGe7XAABQrWj3sEfrR5xjYICTY4eJr76QQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<?php include_once '../config/database.php'; ?>
+<script src="<?= $base_url ?>assets\js\opinionedit.js"></script>
+
 <!--Add Edit Opinions Modal -->
 <div class="modal fade" id="editOpinionsDialog" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editOpinionsDialogLabel" aria-hidden="true">
-    <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable modal-fullscreen">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editOpinionsDialogLabel">Edit Opinions</h5>
@@ -20,7 +21,7 @@
                 <table id="editOpinionsTable" class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Photo</th>
+                            <th class="w-25">Photo</th>
                             <th>Name</th>
                             <th>Opinion</th>
                         </tr>
@@ -54,7 +55,7 @@
         // });
     }
     $(document).ready(function() {
-        $('#editOpinionsTable').SetEditable({
+        $('#editOpinionsTable').OpinionEdit({
             columnsEd: null,
             $addButton: $('#editOpinionsDialog .btn-add'),
             imageColumn: true,
@@ -67,7 +68,7 @@
                 var opinion = column.find('td:eq(2)').text();
                 if (name === '' && opinion === '' && imgUrl === '') return;
                 if (id)
-                    $.post('<?= $base_url ?>admin/ajax/update_opinion.php', {
+                    $.post('<?= $base_url ?>admin/ajax/opinion.php', {
                         imgUrl: imgUrl,
                         name: name,
                         id: id,
@@ -82,31 +83,31 @@
                         $opinion.find('.opinion-client-opinion').text(data.opinion);
                     })
                 else
-                    $.post('<?= $base_url ?>admin/ajax/add_opinion.php', {
+                    $.post('<?= $base_url ?>admin/ajax/opinion.php', {
                         imgUrl: imgUrl,
                         name: name,
-                        id: id,
+                        imageUpdate,
+                        id: '',
                         opinion: opinion
                     }, function(data) {
                         data = JSON.parse(data);
                         column.attr('data-id', data);
                     })
             },
-            // onBeforeDelete: function(columnsEd) {
-            //     var empId = columnsEd[0].childNodes[1].innerHTML;
-            //     $.ajax({
-            //         type: 'POST',
-            //         url: "action.php",
-            //         dataType: "json",
-            //         data: {
-            //             id: empId,
-            //             action: 'delete'
-            //         },
-            //         success: function(response) {
-            //             if (response.status) {}
-            //         }
-            //     });
-            // },
+            onBeforeDelete: function(row) {
+                var id = row.attr('data-id');
+                if (id === null || id === undefined || id === '')
+                    $(row).remove();
+                else
+                    $.post('<?= $base_url ?>admin/ajax/opinion.php', {
+                        delete: true,
+                        id: id
+                    }, function(data) {
+                        let response = JSON.parse(data)
+                        if (response.success)
+                            $(row).remove();
+                    });
+            }
         });
-    });
+    })
 </script>

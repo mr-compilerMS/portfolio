@@ -22,10 +22,16 @@
     <section class="vh-100 gradient-custom">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                    <div class="card border border-primary" style="border-radius: 1rem;">
-                        <div class="card-body p-5 text-center">
 
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <?php
+                    if (isset($_GET["error"]))
+                        echo '<div class="alert alert-warning alert-dismissible fade show mt-2" id="error" role="error">
+                            <strong>Error !</strong> Invalid password or username..
+                        </div>'
+                    ?>
+                    <div class="card border border-primary" style="border-radius: 1rem;">
+                        <div class="card-body p-3 px-4 px-lg-5 text-center">
                             <form class="mb-md-5 mt-md-4" action="validate_login.php" method="post">
 
                                 <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
@@ -33,16 +39,21 @@
 
                                 <div class="form-outline mb-4">
 
-                                    <input type="text" placeholder="username" id="username" name="username" class="form-control form-control-lg" />
+                                    <input tabindex="1" type="text" autofocus placeholder="username" id="username" name="username" class="form-control form-control-lg" />
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="password" placeholder="Password" id="password" name="password" class="form-control form-control-lg" />
+                                    <input tabindex="2" type="password" placeholder="Password" id="password" name="password" class="form-control form-control-lg" />
                                 </div>
 
-                                <p class="small mb-5 pb-lg-2"><a class="text-dark" href="#!">Forgot password?</a></p>
+                                <p class="small m2-5 "><a class="text-dark" href="javascript:forgetPassword();">Forgot password?</a></p>
+                                <div class="alert alert-info fade mt-0" id="forget-password" role="alert">
+                                    Please contact <strong>Service Provider</strong> to recover account
+                                    <!-- <button type="button" class="btn-close ms-1 btn-sm" data-bs-dismiss="alert" aria-label="Close"></button> -->
+                                </div>
+                                <button tabindex="3" class="btn btn-outline-primary btn-lg px-5 mt-lg-2" type="submit">Login</button>
 
-                                <button class="btn btn-outline-primary btn-lg px-5" type="submit">Login</button>
+
                             </form>
                         </div>
                     </div>
@@ -50,6 +61,18 @@
             </div>
         </div>
     </section>
+    <script>
+        function forgetPassword() {
+            document.getElementById("forget-password").classList.add('show')
+            setTimeout(() => {
+                document.getElementById("forget-password").classList.remove('show')
+            }, 6000)
+        }
+        setTimeout(() => {
+            if (document.getElementById("error"))
+                document.getElementById("error").classList.remove('show')
+        }, 5000)
+    </script>
 </body>
 
 </html>

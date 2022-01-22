@@ -5,7 +5,7 @@ $result = $conn->query($sql);
 
 <!-- ======= Opinions Section ======= -->
 <section class="section-bg">
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="container" data-aos="fade-up">
         <div class="section-title">
             <h2>Opinions</h2>
         </div>
@@ -20,7 +20,7 @@ $result = $conn->query($sql);
                         <div class="card h-100 border border-primary shadow">
                             <div class="row h-100">
                                 <div class="col-12 col-sm-3 d-flex justify-content-center h-100">
-                                    <img class="rounded-circle opinion-client" src="<?= $base_url ?><?= $row["imgUrl"] ?>" alt="" />
+                                    <img class="col-3 col-sm-12 rounded-circle opinion-client" src="<?= $base_url ?><?= $row["imgUrl"] ?>" alt="" />
                                 </div>
                                 <div class="col-12 col-sm-9 mt-4 mt-sm-1 h-100">
                                     <div class="name col-12 text-center text-sm-start h6 fw-bold opinion-client-name">
@@ -44,6 +44,7 @@ $result = $conn->query($sql);
     </div>
 </section>
 <!-- ======= Opinions Section ======= -->
+<script src="<?= $base_url ?>assets/vendor/owl-carousel/owl.carousel.min.js"></script>
 
 
 <script>
@@ -52,7 +53,7 @@ $result = $conn->query($sql);
         silder.owlCarousel({
             autoplay: true,
             autoplayTimeout: 2000,
-            autoplayHoverPause: true,
+            // autoplayHoverPause: true,
             items: <?= $result->num_rows ?>,
             stagePadding: 20,
             center: true,
