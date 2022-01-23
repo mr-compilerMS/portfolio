@@ -225,31 +225,6 @@
   });
 
   /**
-   * Initiate portfolio lightbox
-   */
-  const portfolioLightbox = GLightbox({
-    selector: ".portfolio-lightbox",
-    width: "100%",
-    height: "100%",
-  });
-
-  /**
-   * Portfolio details slider
-   */
-  new Swiper(".portfolio-details-slider", {
-    speed: 400,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: ".swiper-pagination",
-      type: "bullets",
-      clickable: true,
-    },
-  });
-
-  /**
    * Animation on scroll
    */
   window.addEventListener("load", () => {
@@ -260,6 +235,34 @@
       mirror: false,
     });
   });
+
+  /**
+   * Initiate portfolio lightbox
+   */
+  if (GLightbox) {
+    const portfolioLightbox = GLightbox({
+      selector: ".portfolio-lightbox",
+      width: "100%",
+      height: "100%",
+    });
+  }
+
+  /**
+   * Portfolio details slider
+   */
+  if (Swiper)
+    new Swiper(".portfolio-details-slider", {
+      speed: 400,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        type: "bullets",
+        clickable: true,
+      },
+    });
 })();
 
 function imageChange(e) {

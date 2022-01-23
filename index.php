@@ -81,20 +81,14 @@ echo "<script>var base_url = '$base_url';</script>";
                         <img src="<?= $imgurls["aboutmeimg"] ?>" class="img-fluid" alt="" />
                     </div>
 
-                    <div class="
-                col-sm-9
-                d-flex
-                flex-column
-                justify-content-center
-                about-content
-              ">
+                    <div class="col-sm-9 d-flex flex-column justify-content-center about-content">
                         <div class="section-title">
                             <h2>About Me</h2>
                             <p id="aboutme"><?php if (isset($fieldvalues["aboutme"])) {
                                                 echo $fieldvalues["aboutme"];
                                             } ?></p>
 
-                            <a href="about.php">Read More</a>
+                            <a href="<?= $base_url ?>about.php">Read More</a>
                         </div>
                     </div>
                 </div>

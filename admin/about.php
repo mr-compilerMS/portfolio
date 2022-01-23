@@ -27,21 +27,15 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="<?= $base_url ?>assets/vendor/animate.css/animate.min.css" rel="stylesheet" />
   <link href="<?= $base_url ?>assets/vendor/aos/aos.css" rel="stylesheet" />
   <link href="<?= $base_url ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
   <link href="<?= $base_url ?>assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
-  <link href="<?= $base_url ?>assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
-  <link href="<?= $base_url ?>assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
-  <link href="<?= $base_url ?>assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
-  <link href="<?= $base_url ?>assets/vendor/owl-carousel/owl.carousel.min.css" rel="stylesheet" />
-  <link href="<?= $base_url ?>assets/vendor/owl-carousel/owl.theme.default.min.css" rel="stylesheet" />
   <link href="<?= $base_url ?>assets\vendor\image-crop\pixelarity.css" rel="stylesheet" />
+  <link href="<?= $base_url ?>assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="<?= $base_url ?>assets/css/style.css" rel="stylesheet" />
   <link href="<?= $base_url ?>assets/css/admin-style.css" rel="stylesheet" />
-  <link href="<?= $base_url ?>assets/css/owl-carousel.css" rel="stylesheet" />
   <script src="<?= $base_url ?>assets/vendor/jquery/jquery.min.js"></script>
   <script src="<?= $base_url ?>assets\vendor\image-crop\pixelarity-faceless.js"></script>
 
@@ -62,16 +56,16 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link" href="<?= $base_url ?>index.php">Home</a></li>
+          <li><a class="nav-link" href="<?= $base_url ?>admin/index.php">Home</a></li>
           <li><a class="nav-link active" href="#main">About Me</a></li>
           <li>
-            <a class="nav-link" href="<?= $base_url ?>achievements.php">Achievements</a>
+            <a class="nav-link" href="<?= $base_url ?>admin/achievements.php">Achievements</a>
           </li>
           <li>
-            <a class="nav-link" href="<?= $base_url ?>news.php">News</a>
+            <a class="nav-link" href="<?= $base_url ?>admin/news.php">News</a>
           </li>
-          <li><a class="nav-link" href="<?= $base_url ?>gallery.php">Gallery</a></li>
-          <li><a class="nav-link" href="<?= $base_url ?>contact.php">Contact Me</a></li>
+          <li><a class="nav-link" href="<?= $base_url ?>admin/gallery.php">Gallery</a></li>
+          <li><a class="nav-link" href="<?= $base_url ?>admin/contact.php">Contact Me</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
@@ -99,62 +93,57 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
     <!-- End Breadcrumbs Section -->
 
 
-    <div class="container aboutheader" data-aos="fade-up">
+    <div class="container aboutheader" data-aos="fade-down">
 
       <div class="text-center px-5 py-md-3" style="position: relative;">
-        <img src="<?= $imgurls["aboutmainimg"] ?>" id="aboutmainimg" alt="<?php if (isset($fieldvalues["abouttitle"])) echo $fieldvalues["abouttitle"];
-                                                                          else echo ""; ?>" class="img-fluid rounded-circle" alt="" width="300px" height="300px" />
+        <img src="<?= $imgurls["aboutmainimg"] ?>" id="aboutmainimg" alt="<?= (isset($fieldvalues["abouttitle"])) ? $fieldvalues["abouttitle"] : "" ?>" class="img-fluid rounded-circle" alt="" width="300px" height="300px" />
         <button onclick="editImage('aboutmainimg',400,400)" class="btn btn-edit-sm btn-primary" role="button" style="position: relative;"><i class="bi bi-pencil"></i> </button>
 
       </div>
       <div class="text-center section-title" style="position: relative;">
         <h2 id="abouttitle">
-          <?php if (isset($fieldvalues["abouttitle"])) echo $fieldvalues["abouttitle"];
-          else echo "abouttitle"; ?>
+          <?= (isset($fieldvalues["abouttitle"])) ? $fieldvalues["abouttitle"] : "abouttitle"; ?>
         </h2>
         <button onclick="editField('abouttitle', 'text','')" class="btn btn-edit-sm btn-primary" role="button"><i class="bi bi-pencil"></i> </button>
 
         <p id="aboutsubtitle">
-          <?php if (isset($fieldvalues["aboutsubtitle"])) echo $fieldvalues["aboutsubtitle"];
-          else echo "aboutsubtitle"; ?>
+          <?= (isset($fieldvalues["aboutsubtitle"])) ? $fieldvalues["aboutsubtitle"] : "aboutsubtitle"; ?>
         </p>
         <button onclick="editField('aboutsubtitle', 'text','')" class="btn btn-edit-sm btn-primary" style="top: 60px;" role="button"><i class="bi bi-pencil"></i> </button>
 
       </div>
     </div>
 
-    <div class="container">
-      <div class="col-12 col-sm-4 col-md-3"></div>
-    </div>
-    <!-- 
-    <section id="about" class="about">
-      <div class="container" data-aos="fade-up">
-        <div class="row no-gutters">
-          <div class="col-sm-3 d-flex flex-column justify-content-center">
-            <img src="<?= $imgurls["aboutmeimg"] ?>" class="img-fluid" alt="" />
-          </div>
+    <section class="about-content container" data-aos="fade-up">
+      <div class="row">
+        <div class="col-12 col-sm-4 col-md-3 col-lg-2" style="position: relative;"><img src="<?= $imgurls["aboutcontent1img"] ?>" id="aboutcontent1img" alt="aboutcontent" width="100%" height="100%" class="img-fluid" alt="" /><button onclick="editImage('aboutcontent1img',400,400)" class="btn btn-edit-sm btn-primary" role="button" style="position: relative;"><i class="bi bi-pencil"></i> </button></div>
 
-          <div class="
-                col-sm-9
-                d-flex
-                flex-column
-                justify-content-center
-                about-content
-              ">
-            <div class="section-title">
-              <h2>About Me</h2>
-              <p id="aboutme"><?php if (isset($fieldvalues["address"])) {
-                                echo $fieldvalues["aboutme"];
-                              } ?></p>
-
-              <a href="about.php">Read More</a>
-            </div>
-          </div>
+        <div class="col-12 col-sm-8 col-md-9 col-lg-10 d-flex flex-column justify-content-center content">
+          <p id="aboutcontent1"><?= (isset($fieldvalues["aboutcontent1"])) ? $fieldvalues["aboutcontent1"] :  ""; ?></p>
+          <button onclick="editField('aboutcontent1', 'textarea','')" class="btn btn-edit-sm btn-primary" style="top: 60px;" role="button"><i class="bi bi-pencil"></i> </button>
         </div>
       </div>
-    </section> -->
-    <!-- End About Us Section -->
+    </section>
 
+
+    <section class="container about-content" data-aos="fade-up">
+      <div class="w-100" id="aboutpagecontent">
+        <?php
+        if (isset($fieldvalues["aboutpagecontent"]) && !empty($fieldvalues["aboutpagecontent"])) {
+          echo $fieldvalues["aboutpagecontent"];
+        } else {
+        ?><h4>Place your heading here</h4>
+          <p> <?= "\t\t" ?>Place content related here. If you want multiple headings and content only copy paste this below. </p>
+          <h4>Place second heading here</h4>
+          <p> <?= "\t\t" ?>If you don't want it remove this. You can also put bootstrap 5 templates here </p>
+        <?php
+        }
+
+        ?>
+      </div>
+      <button onclick="editField('aboutpagecontent', 'code','You can also put bootstrap 5 templates here. <a target=\'__blank\' href=\'https:\\\\getbootstrap.com/docs/5.0/components/\'>Click here</a> to browse templates.','modal-xl')" class="btn btn-edit-sm btn-primary" style="top: 60px;" role="button"><i class="bi bi-pencil"></i> </button>
+
+    </section>
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -208,10 +197,10 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
             <h4>Useful Links</h4>
             <ul>
               <li>
-                <i class="bx bx-chevron-right"></i> <a href="#hero">Home</a>
+                <i class="bx bx-chevron-right"></i> <a href="<?= $base_url ?>index.php">Home</a>
               </li>
               <li>
-                <i class="bx bx-chevron-right"></i> <a href="<?= $base_url ?>about.php">About us</a>
+                <i class="bx bx-chevron-right"></i> <a href="#main">About us</a>
               </li>
               <li>
                 <i class="bx bx-chevron-right"></i> <a href="<?= $base_url ?>achievements.php">Achievements</a>
@@ -243,7 +232,7 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
 
   <!-- Edit Field Values modal -->
   <div class="modal fade" id="editFieldValues" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editFieldValuesLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog" id="fieldModal">
       <form class="modal-content" onsubmit="handleFieldValueSubmit(event)">
         <div class="modal-header">
           <h5 class="modal-title" id="editFieldValuesLabel"></h5>
@@ -251,8 +240,10 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
         </div>
         <div class="modal-body">
           <div class="mb-1">
-            <label for="fieldValue" class="form-label"></label>
-            <input type="textarea" rows='3' class="form-control" id="fieldValue" placeholder="Title">
+            <label class="form-label"></label>
+            <div id="code-editor" style="height: 60vh;"></div>
+            <input type="hidden" name="code" value="false">
+            <input type="text" rows='3' class="form-control" id="fieldValue" placeholder="Title">
           </div>
         </div>
         <div class="modal-footer">
@@ -264,20 +255,40 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
   </div>
 
   <!-- Vendor JS Files -->
-  <script src="<?= $base_url ?>assets/vendor/purecounter/purecounter.js"></script>
   <script src="<?= $base_url ?>assets/vendor/aos/aos.js"></script>
-  <script src="<?= $base_url ?>assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="<?= $base_url ?>assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="<?= $base_url ?>assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="<?= $base_url ?>assets/vendor/owl-carousel/owl.carousel.min.js"></script>
   <!-- Template Main JS File -->
-  <script src="<?= $base_url ?>assets/js/main.js"></script>
-
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.21.0/min/vs/loader.min.js"></script>
   <script>
+    window.addEventListener("load", () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease-in-out",
+        once: true,
+        mirror: false,
+      });
+    });
     var editFieldValues = new bootstrap.Modal(document.getElementById('editFieldValues'), {
       keyboard: false
     })
+    require.config({
+      paths: {
+        'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.18.1/min/vs'
+      }
+    });
+    require(['vs/editor/editor.main'], function() {
+      window.editor = monaco.editor.create(document.getElementById('code-editor'), {
+        value: '',
+        scrollBeyondLastLine: false,
+        autoIndent: true,
+        formatOnPaste: true,
+        formatOnType: true,
+        language: 'html',
+        automaticLayout: true,
+        lineNumbers: "off",
+        glyphMargin: false,
+        theme: "vs-dark",
+      });
+    });
 
     function editImage(id, width, height) {
       $('#imageInput').click();
@@ -313,34 +324,55 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
       });
     }
 
-    function editField(fieldId, type, helpText) {
+    function editField(fieldId, type, helpText, size = null) {
       $('#editFieldValuesLabel').html(fieldId);
-      let currentText = $('#' + fieldId).html();
+      let currentText = $('#' + fieldId).html().trim();
       let parent = $('#fieldValue').parent();
-      parent.find('label').text(helpText);
+      let rows = 3;
+      if (size !== null) {
+        $("#fieldModal").addClass(size);
+        rows = 10;
+      }
+      parent.find('.form-label').html(helpText);
       $('#fieldValue').remove();
+      if (type === 'code') {
+        $("#code-editor").show();
+        window.editor.setValue(currentText);
+        editor.getAction('editor.action.formatDocument').run()
+        $("input[name='code']").val(true)
+      } else {
+        $("input[name='code']").val(false)
+        $("#code-editor").hide();
+      }
       let field = '';
       switch (type) {
         case 'text':
           field = '<input type="text" class="form-control" id="fieldValue" value="' + currentText + '">';
           break;
+        case 'code':
+          field = '<input type="hidden" class="form-control" id="fieldValue">';
+          break;
         case 'textarea':
-          field = '<textarea maxlength="500" class="form-control" id="fieldValue" rows="3" >' + currentText + '</textarea>';
+          field = '<textarea class="form-control" id="fieldValue" rows="' + rows + '" >' + currentText + '</textarea>';
           break;
         default:
           field = '<input type="' + type + '" class="form-control" id="fieldValue" value="' + currentText + '">';
       }
       parent.append(field);
-      // $('#fieldValue').val(currentText);
       $('#fieldValue').attr('name', fieldId);
       editFieldValues.show();
 
     }
 
+
     function handleFieldValueSubmit(e) {
       e.preventDefault();
       let fieldId = $('#fieldValue').attr('name');
-      let fieldValue = $('#fieldValue').val();
+      let fieldValue;
+      if ($("input[name='code']").val() === 'true')
+        fieldValue = window.editor.getValue();
+      else
+        fieldValue = $('#fieldValue').val();
       $('#' + fieldId).html(fieldValue);
       let data = {
         id: fieldId,

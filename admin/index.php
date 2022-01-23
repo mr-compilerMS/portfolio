@@ -58,7 +58,7 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
         <div class="container d-flex align-items-center">
             <div class="logo me-auto" style="position: relative;">
                 <h1><a href="index.php" id="title"><?= $fieldvalues["title"] ?></a></h1>
-                <button onclick="editField('title', 'text','')" class="btn btn-edit-sm btn-primary" role="button" style="top: 10px;right:-40px;"><i class="bi bi-pencil"></i> </button>
+                <button onclick="editField('title', 'text','')" class="btn btn-edit-sm btn-primary" role="button" style="top: 10px;right:0;"><i class="bi bi-pencil"></i> </button>
 
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <a href="index.php"><img src="<?= $base_url ?>assets/img/logo.png" alt="" class="img-fluid"></a>-->
@@ -66,16 +66,16 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                    <li><a class="nav-link scrollto" href="#about">About Me</a></li>
+                    <li><a class="nav-link active" href="#hero">Home</a></li>
+                    <li><a class="nav-link" href="<?= $base_url ?>admin/about.php">About Me</a></li>
                     <li>
-                        <a class="nav-link scrollto" href="#services">Achievements</a>
+                        <a class="nav-link" href="<?= $base_url ?>admin/achievements.php">Achievements</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" href="#portfolio">News</a>
+                        <a class="nav-link" href="<?= $base_url ?>admin/news.php">News</a>
                     </li>
-                    <li><a class="nav-link scrollto" href="#team">Gallery</a></li>
-                    <li><a class="nav-link scrollto" href="#contact">Contact Me</a></li>
+                    <li><a class="nav-link" href="<?= $base_url ?>admin/gallery.php">Gallery</a></li>
+                    <li><a class="nav-link" href="<?= $base_url ?>admin/contact.php">Contact Me</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
@@ -104,7 +104,7 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
                                                 echo $fieldvalues["aboutme"];
                                             } ?></p>
                             <button onclick="editField('aboutme', 'textarea','')" class="btn btn-edit-sm btn-primary" role="button"><i class="bi bi-pencil"></i> </button>
-                            <a href="about.php">Read More</a>
+                            <a href="<?= $base_url ?>admin/about.php">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -219,11 +219,11 @@ if (!(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)) {
                             else
                                 echo "<a id='phone1' href='tel:'>+91</a>";
                             echo "<button onclick='editField(`phone1`, `tel`,`Enter Phone 1.`)' class='btn ' role='button'><i class='bi bi-pencil'></i> </button><br>";
-                            if (isset($fieldvalues["email2"]))
-                                echo "<a id='email2' href='tel:" . $fieldvalues["email2"] . "'>" . $fieldvalues["email2"] . "</a>";
+                            if (isset($fieldvalues["phone2"]))
+                                echo "<a id='phone2' href='tel:" . $fieldvalues["phone2"] . "'>" . $fieldvalues["phone2"] . "</a>";
                             else
-                                echo "<a id='email2' href='tel:'>+91</a>";
-                            echo "<button onclick='editField(`email2`, `tel`,`Enter phone 2.`)' class='btn ' role='button'><i class='bi bi-pencil'></i> </button><br>";
+                                echo "<a id='phone2' href='tel:'>+91</a>";
+                            echo "<button onclick='editField(`phone2`, `tel`,`Enter phone 2.`)' class='btn ' role='button'><i class='bi bi-pencil'></i> </button><br>";
                             ?>
                         </div>
                     </div>

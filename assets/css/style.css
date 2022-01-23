@@ -1360,3 +1360,20 @@ section {
   word-break: break-word;
   color: #666;
 }
+.about-content p {
+  text-align: justify;
+  text-justify: inter-word;
+  overflow-wrap: normal;
+  word-break: break-word;
+  color: #666;
+  white-space: break-spaces;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  overflow: hidden;
+}
+.about-content h4 {
+  font-weight: 600;
+  padding-bottom: 0;
+  color: #5c768d;
+}

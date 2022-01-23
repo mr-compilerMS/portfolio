@@ -24,17 +24,13 @@ echo "<script>var base_url = '$base_url';</script>";
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  <script src="<?= $base_url ?>assets/vendor/jquery/jquery.min.js"></script>
 
 </head>
 
@@ -88,7 +84,7 @@ echo "<script>var base_url = '$base_url';</script>";
     <!-- End Breadcrumbs Section -->
 
 
-    <div class="container aboutheader" data-aos="fade-up">
+    <div class="container aboutheader" data-aos="fade-down">
 
       <div class="text-center px-5 py-md-3">
         <img src="<?= $imgurls["aboutmainimg"] ?>" id="aboutmainimg" alt="<?php if (isset($fieldvalues["abouttitle"])) echo $fieldvalues["abouttitle"];
@@ -107,17 +103,28 @@ echo "<script>var base_url = '$base_url';</script>";
     </div>
 
 
-    <div class="about container">
+    <div class="about container" data-aos="fade-up">
       <div class="row">
-        <div class="col-12 col-sm-4 col-md-3"><img src="<?= $imgurls["aboutmainimg"] ?>" class="img-fluid" alt="" /></div>
+        <div class="col-12 col-sm-4 col-md-2"><img src="<?= $imgurls["aboutcontent1img"] ?>" class="img-fluid" alt="" /></div>
 
-        <div class="col-12 col-sm-8 col-md-9">
-          <?php if (isset($fieldvalues["aboutme"])) echo $fieldvalues["aboutme"];
-          else echo ""; ?>
+        <div class="col-12 col-sm-8 col-md-10 d-flex flex-column justify-content-center content">
+          <p><?= (isset($fieldvalues["aboutcontent1"])) ? $fieldvalues["aboutcontent1"] :  ""; ?></p>
         </div>
       </div>
     </div>
 
+
+
+    <section class="container about-content" data-aos="fade-up">
+      <div class="mx-5">
+        <?php
+        if (isset($fieldvalues["aboutpagecontent"])) {
+          echo $fieldvalues["aboutpagecontent"];
+        }
+
+        ?>
+      </div>
+    </section>
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -171,10 +178,10 @@ echo "<script>var base_url = '$base_url';</script>";
             <h4>Useful Links</h4>
             <ul>
               <li>
-                <i class="bx bx-chevron-right"></i> <a href="#hero">Home</a>
+                <i class="bx bx-chevron-right"></i> <a href="<?= $base_url ?>index.php">Home</a>
               </li>
               <li>
-                <i class="bx bx-chevron-right"></i> <a href="<?= $base_url ?>about.php">About us</a>
+                <i class="bx bx-chevron-right"></i> <a href="#main">About us</a>
               </li>
               <li>
                 <i class="bx bx-chevron-right"></i> <a href="<?= $base_url ?>achievements.php">Achievements</a>
@@ -204,16 +211,26 @@ echo "<script>var base_url = '$base_url';</script>";
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
+
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script>
+    document.querySelector('.mobile-nav-toggle').addEventListener('click', function(e) {
+      document.querySelector("#navbar").classList.toggle("navbar-mobile");
+      this.classList.toggle("bi-list");
+      this.classList.toggle("bi-x");
+    })
+    window.addEventListener("load", () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease-in-out",
+        once: true,
+        mirror: false,
+      });
+    });
+  </script>
 
 </body>
 

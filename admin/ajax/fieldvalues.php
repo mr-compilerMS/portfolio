@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($query);
 
     if ($result->num_rows > 0) {
-        $query = "UPDATE fieldvalues SET `value` = '$value' WHERE id = '$id'";
+        $query = "UPDATE fieldvalues SET `value` = '" . mysqli_real_escape_string($conn, $value) . "' WHERE id = '$id'";
         if ($conn->query($query) === true) {
             $arr = array();
             $arr['success'] = true;
@@ -29,12 +29,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo json_encode($arr);
         }
     } else {
-        $query = "insert into fieldvalues (id,value) values('$id','$value')";
+        $query = "insert into fieldvalues (id,value) values('$id','" . mysqli_real_escape_string($conn, $value) . "')";
+
         if ($conn->query($query) === true) {
             $arr = array();
             $arr['success'] = true;
             echo json_encode($arr);
         } else {
+            echo $conn->error;
             $arr = array();
             $arr['success'] = false;
             echo json_encode($arr);
